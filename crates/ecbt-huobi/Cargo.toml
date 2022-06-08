@@ -1,0 +1,34 @@
+[package]
+name = "ecbt-huobi"
+version = "0.0.0"
+edition = "2021"
+description = "Huobi implementation for Ecbt."
+license = "BSD-2-Clause"
+repository = "https://github.com/wmjtyd/ecbt"
+keywords = ["cryptocurrency", "exchange", "ecbt", "api"]
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+ecbt-exchange = { path = "../ecbt-exchange", version = "0.0.0" }
+hex = "0.4.3"
+hmac = "0.12"
+sha2 = "0.10"
+
+async-trait = "0.1"
+futures = "0.3.19"
+time = "0.3.9"
+rust_decimal = "1.23.1"
+url = "2.2.0"
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+serde_qs = "0.8"
+serde_urlencoded = "0.7.0"
+thiserror = "1"
+reqwest = { version = "0.11", features = ["blocking", "json"] }
+tokio = { version = "1", features = ["full"] }
+tokio-tungstenite = { version = "0.13", features = ["tls"] }
+
+tracing = "0.1"
+tracing-appender = "0.2"
+tracing-subscriber = { version = "0.3", features = ["json", "env-filter"] }
