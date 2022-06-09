@@ -1,4 +1,4 @@
-mod exchange;
 mod http_client;
+mod utils;
 
-pub use http_client::HttpClient as HuobiHttp;
+pub use http_client::HuobiHttp;
