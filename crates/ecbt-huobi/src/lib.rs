@@ -1,4 +1,4 @@
-mod http_client;
+mod rest;
 mod utils;
 
-pub use http_client::HuobiHttp;
+pub use rest::HuobiHttp;

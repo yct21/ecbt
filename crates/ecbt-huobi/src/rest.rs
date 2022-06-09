@@ -1,4 +1,5 @@
 mod exchange;
+mod models;
 mod transport;
 
 use self::transport::Transport;
@@ -10,6 +11,7 @@ pub struct HuobiHttp {
     pub client: BaseClient,
 }
 
+/// Internal HTTP client can be retrieve with `Exchange::inner_client`.
 pub struct BaseClient {
     transport: Transport,
 }
