@@ -1,8 +1,10 @@
 mod exchange;
-mod models;
+mod market_data;
+pub mod models;
 mod transport;
 
 use self::transport::Transport;
+use crate::utils::Result;
 use ecbt_exchange::info::ExchangeInfo;
 
 /// Huobi exchange using HTTP
@@ -17,9 +19,10 @@ pub struct BaseClient {
 }
 
 impl BaseClient {
-    fn new(url: String) -> Self {
-        Self {
-            transport: Transport::new(url),
-        }
+    fn new(url: String) -> Result<Self> {
+        Ok(Self {
+            // TODO: credentials
+            transport: Transport::new(url, crate::authentication::Auth::WithoutCredentials)?,
+        })
     }
 }

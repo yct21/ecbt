@@ -1,4 +1,4 @@
-//! adaptor for ecbt-exchange
+//! adaptors and trait implementations for ecbt-exchange
 
 use async_trait::async_trait;
 use ecbt_exchange::{
@@ -10,11 +10,11 @@ use ecbt_exchange::{
         Order, OrderBookRequest, OrderBookResponse, OrderCanceled, Paginator, Ticker, Trade,
         TradeHistoryRequest,
     },
-    shared::Result,
     Exchange, ExchangeAccount, ExchangeMarketData,
 };
 
 use super::{BaseClient, HuobiHttp};
+use crate::utils::Result;
 
 #[async_trait]
 impl Exchange for HuobiHttp {
@@ -23,7 +23,7 @@ impl Exchange for HuobiHttp {
 
     async fn new(_params: Self::InitParams) -> Result<Self> {
         let exchange_info = ExchangeInfo::new();
-        let base_client = BaseClient::new("https://api.huobi.pro".to_owned());
+        let base_client = BaseClient::new("https://api.huobi.pro".to_owned())?;
         let huobi_http = Self {
             exchange_info,
             client: base_client,
