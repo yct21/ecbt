@@ -58,7 +58,20 @@ impl ExchangeMarketData for HuobiHttp {
         todo!()
     }
     async fn get_price_ticker(&self, req: &GetPriceTickerRequest) -> Result<Ticker> {
-        todo!()
+        let market_pair = &req.market_pair;
+        let symbol = format!(
+            "{}{}",
+            market_pair.0.to_string().to_lowercase(),
+            market_pair.1.to_string().to_lowercase(),
+        );
+        let tick = self.get_aggregated_ticker(symbol).await?.tick;
+
+        let ticker = Ticker {
+            price: Some(tick.close),
+            price_24h: None,
+        };
+
+        Ok(ticker)
     }
     async fn get_historic_rates(&self, req: &GetHistoricRatesRequest) -> Result<Vec<Candle>> {
         todo!()

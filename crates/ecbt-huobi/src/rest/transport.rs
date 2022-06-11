@@ -15,7 +15,9 @@ pub(super) struct Transport {
 
 impl Transport {
     pub(crate) fn new(base_url: String, auth: Auth) -> Result<Self> {
-        let client = reqwest::Client::builder().build()?; // TODO: check reqwest API
+        let client = reqwest::Client::builder()
+            .connection_verbose(true)
+            .build()?; // TODO: check reqwest API
         Ok(Self {
             base_url,
             auth,
@@ -30,7 +32,8 @@ impl Transport {
     {
         // TODO: handle signed
 
-        let mut request = self.client.get(endpoint);
+        let url = format!("{}{}", self.base_url, endpoint);
+        let mut request = self.client.get(url);
         if let Some(query) = query {
             request = request.query(query);
         }

@@ -12,6 +12,8 @@ use ecbt_huobi::HuobiHttp;
 
 #[tokio::main]
 async fn main() {
+    pretty_env_logger::init();
+
     let ecbt = Ecbt::http::<HuobiHttp>(()).await.unwrap();
     let request = GetPriceTickerRequest {
         market_pair: MarketPair(Currency::ETH, Currency::USDT),

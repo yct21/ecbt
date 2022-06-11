@@ -1,3 +1,5 @@
+use crate::utils::string_to_decimal;
+use rust_decimal::Decimal;
 use serde::{Deserialize, Serialize};
 
 /// Latest Aggregated Ticker request
@@ -15,5 +17,6 @@ pub(crate) struct AggregatedTickerResponse {
 
 #[derive(Clone, Debug, Deserialize)]
 pub(crate) struct Tick {
-    pub(crate) close: f64,
+    // #[serde(with = "string_to_decimal")]
+    pub(crate) close: Decimal,
 }
